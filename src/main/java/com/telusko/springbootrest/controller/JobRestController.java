@@ -49,14 +49,13 @@ public class JobRestController {
 		service.addJob(jobPost);
 		return service.getJob(jobPost.getPostId());
 	}
-	
-	
-	
-	@PutMapping("jobPost")
-	public JobPost updateJob(@RequestBody JobPost jobPost) {
-		service.updateJob(jobPost);
-		return service.getJob(jobPost.getPostId());
-	}
+
+
+    @PutMapping("jobPost/{postId}")
+    public JobPost updateJob(@PathVariable int postId, @RequestBody JobPost jobPost) {
+        jobPost.setPostId(postId);
+        return service.updateJob(jobPost);
+    }
 	
 	
 	

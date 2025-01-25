@@ -53,11 +53,12 @@ public class JobService {
 
 
 
-//method to update job with job post object
-		public void updateJob(JobPost jobPost) {
-		repo.save(jobPost);
-			
+	public JobPost updateJob(JobPost jobPost) {
+		if (!repo.existsById(jobPost.getPostId())) {
+			throw new RuntimeException("Job not found with id: " + jobPost.getPostId());
 		}
+		return repo.save(jobPost);
+	}
 
 
 
